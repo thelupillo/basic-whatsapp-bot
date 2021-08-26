@@ -9,8 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "UNLICENSED",
-  "license": "ISC",
+  "author": "",
+  "license": "UNLICENSED",
   "dependencies": {
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.14.0"
