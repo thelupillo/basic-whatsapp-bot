@@ -4,9 +4,18 @@
   "description": "A basic implementation of whatsapp-web.js",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "UNLICENSED",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
