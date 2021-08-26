@@ -1,10 +1,11 @@
 const fs = require('fs');
 const qrcode = require('qrcode-terminal');
 
-const { Client } = require('whatsapp-web.js');
+const { Client, Location } = require('whatsapp-web.js');
 let client = new Client();
 
 const SESSION_JSON_PATH = './session.json';
+const COMMANDS_PREFIX = '!';
 
 const withoutSession = () => {
     client = new Client();
@@ -17,7 +18,7 @@ const withoutSession = () => {
     client.on('authenticated', (session) => {
         console.log('authenticated');
         fs.writeFile(SESSION_JSON_PATH, JSON.stringify(session), (err) => {
-            if (err) console.log(err);
+            if (err) console.err(err);
         });
     });
 
@@ -52,6 +53,17 @@ const withSession = () => {
 const clientReady = () => {
     client.on('message', (message) => {
         // TODO: Add some logic when a message is received
+        if (message.body.startsWith(COMMANDS_PREFIX)) {
+            console.log(`${message.from}: ${message.body}`);
+
+            switch (message.body) {
+                case `${COMMANDS_PREFIX}ping`:
+                    client.sendMessage(message.from, '*Bot:* pong');
+                    break;
+                default:
+                    client.sendMessage(message.from, '*Bot:* Command not recognized');
+            }
+        }
     });
 };
 
